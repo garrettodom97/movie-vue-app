@@ -1,6 +1,11 @@
 <template>
   <div>
-    <h1>{{ greeting }}</h1>
+    <div v-for="movie in movies" v-bind:key="movie.id">
+      <router-link :to="`/movies/${movie.id}`">
+        <h2>{{ movie.title }} - {{ movie.year }}</h2>
+        <p>Plot: {{ movie.plot }}</p>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -27,17 +32,6 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.movies = response.data;
-        })
-        .catch((error) => console.log(error.response));
-    },
-    addMovie: function () {
-      console.log("Adding movie");
-      var params = { title: this.title, year: this.year, plot: this.plot };
-      axios
-        .post("http://localhost:3000/movies", params)
-        .then((response) => {
-          console.log(response.data);
-          this.movies.push(response.data);
         })
         .catch((error) => console.log(error.response));
     },
