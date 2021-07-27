@@ -1,6 +1,6 @@
 <template>
   <div class="movie-edit">
-    <form v-on:submit.prevent="updatemovie()">
+    <form v-on:submit.prevent="updateMovie()">
       <h1>Edit Movie</h1>
       <ul>
         <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
@@ -20,6 +20,10 @@
       <div>
         <label>Plot:</label>
         <input type="text" v-model="editMovieParams.plot" />
+      </div>
+      <div>
+        <label>English?:</label>
+        <input type="checkbox" value="true" v-model="editMovieParams.english" />
       </div>
       <input type="submit" value="Submit" />
     </form>
@@ -44,7 +48,13 @@ export default {
     });
   },
   methods: {
-    updatemovie: function () {
+    updateMovie: function () {
+      if (this.editMovieParams.english == "true") {
+        this.editMovieParams.english = true;
+      } else {
+        this.editMovieParams.english = false;
+      }
+      console.log(this.editMovieParams.english);
       axios.patch("/movies/" + this.$route.params.id, this.editMovieParams).then((response) => {
         console.log(response.data);
         this.$router.push("/movies/" + response.data.id);
