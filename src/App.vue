@@ -1,20 +1,31 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-      |
-      <router-link to="/signup">Signup</router-link>
-      |
-      <router-link to="/login">Login</router-link>
-      |
-      <router-link to="/logout">Logout</router-link>
-      |
-      <router-link to="/movies">Movies</router-link>
-      |
-      <router-link to="/movies/new">New Movie</router-link>
-      |
-      <router-link to="/about">About</router-link>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Movie App</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link" href="/signup">Signup</a>
+            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/logout">Logout</a>
+            <a class="nav-link" href="/movies">Movies</a>
+            <a class="nav-link" href="/movies/new">New Movie</a>
+          </div>
+        </div>
+      </div>
+    </nav>
     <router-view />
   </div>
 </template>
