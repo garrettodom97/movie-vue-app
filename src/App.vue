@@ -17,9 +17,15 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
-            <a class="nav-link" href="/signup">Signup</a>
-            <a class="nav-link" href="/login">Login</a>
-            <a class="nav-link" href="/logout">Logout</a>
+            <span v-if="!isLoggedIn()">
+              <a class="nav-link" href="/signup">Signup</a>
+            </span>
+            <span v-if="!isLoggedIn()">
+              <a class="nav-link" href="/login">Login</a>
+            </span>
+            <span v-if="isLoggedIn()">
+              <a class="nav-link" href="/logout">Logout</a>
+            </span>
             <a class="nav-link" href="/movies">Movies</a>
             <a class="nav-link" href="/movies/new">New Movie</a>
           </div>
@@ -52,3 +58,13 @@
   color: #42b983;
 }
 </style>
+
+<script>
+export default {
+  methods: {
+    isLoggedIn: function () {
+      return localStorage.getItem("jwt");
+    },
+  },
+};
+</script>
